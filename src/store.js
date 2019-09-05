@@ -40,6 +40,11 @@ getDate:function(state){
       state.name = data.name;
       state.phone = data.phone;
       state.weight = data.weight;
+    },
+    sendOrder(state,data) {
+      state.id = data.id;
+      // state.status = data.
+      state.date = data.date;
     }
   },
   actions: {
@@ -59,6 +64,24 @@ getDate:function(state){
         });
 
       },
+
+      sendOrder(context,data){
+        axios
+        .patch("http://127.0.0.1:8080/parcels/sendOrder",data)
+        .then(function(response) {
+          context.commit("sendOrder", response.data);
+          console.log("结果:"+response);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function() {
+          console.log("执行完毕");
+        });
+
+      },
+
 
     
     // setData(store,datassss) {

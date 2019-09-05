@@ -18,16 +18,16 @@
         <a-form-item label="取件时间" :label-col="{ span: 5 }" :wrapper-col="{ span: 10 }">
           <a-input
             v-decorator="[
-          'name',
+          'date',
           {rules: [{ required: true, message: 'Please input your note!' }]}
         ]"
-            placeholder="juslly"
+            placeholder="20190807"
           />
         </a-form-item>
 
         <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
           <a-button type="primary" html-type="submit" @click="order()">预约</a-button>
-          <span>   <a-button type="primary" html-type="submit" @click="reset()">取消</a-button> </span> 
+           <a-button type="primary" html-type="submit" @click="reset()">取消</a-button>
         </a-form-item>
 
       </a-form>
@@ -54,28 +54,23 @@ export default {
       });
     },
     handleSelectChange(value) {
-      console.log(value);
       this.form.setFieldsValue({
         note: `Hi, ${value === "male" ? "man" : "lady"}!`
       });
     },
-    sendMessage: function() {
+    order: function() {
       let data = {};
       let idPac = document.getElementById("id").value;
-      let nameUser = document.getElementById("name").value;
-      let phoneUser = document.getElementById("phone").value;
-      let weightPac = document.getElementById("weight").value;
+      let orderDate = document.getElementById("date").value;
       data.id = idPac;
-      data.name = nameUser;
-      data.phone = phoneUser;
-      data.weight = weightPac;
-      // data.push(idPac);
-      // data.push(nameUser);
-      // data.push(phoneUser);
-      // data.push(weightPac)
-
+      data.date = orderDate;
+      
       var self = this;
-      self.$store.dispatch("sendMes",data);
+      self.$store.dispatch("sendOrder",data);
+    },
+
+    reset:function(){
+
     }
   }
 };
