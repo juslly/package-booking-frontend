@@ -9,7 +9,9 @@ const store = new Vuex.Store({
     id:"",
     name:"",
     phone:"",
-    weight:0
+    weight:0,
+    status:"",
+    date:""
   },
   getters: {
       getId:function(state){
@@ -21,8 +23,14 @@ const store = new Vuex.Store({
     getPhone:function(state){
       return state.phone;
   },
-  getweight:function(state){
+  getWeight:function(state){
     return state.weight;
+},
+getStatus:function(state){
+  return state.status;
+},
+getDate:function(state){
+  return state.date;
 }
     
   },
